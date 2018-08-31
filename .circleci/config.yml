@@ -134,7 +134,7 @@ jobs:
       - *decode_gcloud_key
       - run:
           name: Set Google Cloud target project
-          command: gcloud config set project mapnotes-ea9d9
+          command: gcloud config set project testapplication-4f6c5
       - run:
           name: Authenticate with Google Cloud
           command: gcloud auth activate-service-account testapplication-4f6c5@appspot.gserviceaccount.com --key-file ${HOME}/gcloud-service-key.json
@@ -146,7 +146,7 @@ jobs:
           command: mkdir firebase
       - run:
           name: Download instrumented test results from Firebase Test Lab
-          command: gsutil -m cp -r -U "`gsutil ls gs://test-lab-481xmdq2w17is-h08zk45a575ds | tail -1`*" /root/workspace/firebase/
+          command: gsutil -m cp -r -U "`gsutil ls gs://staging.testapplication-4f6c5.appspot.com | tail -1`*" /root/workspace/firebase/
       - *persist_firebase_workspace
       - store_artifacts:
           path: firebase/
