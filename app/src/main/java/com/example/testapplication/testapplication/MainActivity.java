@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;
@@ -19,10 +21,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.login_screen);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
+        ImageView img = findViewById(R.id.imageView);
         final EditText emailInput = findViewById(R.id.email);
         final EditText passwordInput = findViewById(R.id.password);
         Button loginButton = findViewById(R.id.login);
+        final TextView textView = (TextView) findViewById(R.id.textView);
+
+
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView.setText("MEOW!");
+            }
+        });
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -31,15 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
                 if(!isValidEmail(emailInput.getText().toString()) || !isValidPassword(passwordInput.getText().toString()))
                 {
-                    Toast.makeText(MainActivity.this, "Invalid credentials",
-                            Toast.LENGTH_LONG).show();
+                    textView.setText("Invalid credentials");
                 }else{
                     if (isItAdmin(emailInput.getText().toString(), passwordInput.getText().toString())) {
-                        Toast.makeText(MainActivity.this, "Hello admin",
-                                Toast.LENGTH_LONG).show();
+                        textView.setText("Hello admin!");
                     } else {
-                        Toast.makeText(MainActivity.this, "Hello user",
-                                Toast.LENGTH_LONG).show();
+                        textView.setText("Hello user!");
                     }
                 }
 
