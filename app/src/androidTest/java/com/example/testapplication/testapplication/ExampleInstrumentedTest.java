@@ -30,7 +30,7 @@ public class ExampleInstrumentedTest {
     public void checkTextWhenClickingOnCat() {
         onView(withId(R.id.imageView)).perform(click());
         onView(withId(R.id.textView)).check(matches(withText("MEOW!")));
-    }
+    } 
 
     @Test
     public void checkTextWhenEmptyCredentials() {
